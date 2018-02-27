@@ -7,3 +7,20 @@ module Argtable.FFI
 
 %default partial
 %access public export
+
+data Argtable = MkArgtable Ptr
+
+argtableNew : Int -> Int -> IO Argtable
+argtableNew argn errors = do
+  ptr <- foreign FFI_C "argtable_new" (Int -> Int -> IO Ptr) argn errors
+  pure (MkArgtable ptr)
+
+argtableFree : Argtable -> Int -> IO ()
+argtableFree (MkArgtable ptr) argn =
+  foreign FFI_C "argtable_free" (Ptr -> Int -> IO ()) ptr argn
+
+setup : IO ()
+setup = do
+  argtable <- argtableNew 1 20
+  argtableFree argtable 1
+  pure ()
