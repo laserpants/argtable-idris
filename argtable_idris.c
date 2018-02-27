@@ -8,7 +8,7 @@ argtable_new (size_t argn, int errors)
     void **argtable;
 
     argtable = malloc ((argn + 1) * sizeof (void *));
-    argtable[argn] = arg_end(errors);
+    argtable[argn] = arg_end (errors);
 
     return argtable;
 }
