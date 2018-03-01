@@ -1,3 +1,3 @@
 # argtable-idris
 
-Work in progress. :wrench:
+:wrench: Work in progress.
